@@ -1,0 +1,46 @@
+name: github actions checkout
+on:
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  run-maven-prj:
+    name: checkout and run mvn code
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v3
+      
+
+      - name: clean mvn package
+        run: mvn clean package
+        shell: bash
+      
+      - name: test the app
+        run: mvn test
+        shell: bash
+
+
+
+
+# name: ci workflow
+# on:
+#   pull_request:
+#     branches:
+#       - "main"
+# jobs:
+#   ci-workflow:
+#     name: ci workflow
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: checkout code
+#         uses: actions/checkout@v3
+
+#       - name: build the app
+#         run: "mvn clean package"
+#         shell: bash
+
+#       - name: test the app
+#         run: "mvn test"
+#         shell: bash
